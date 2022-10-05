@@ -4,6 +4,9 @@ import 'package:image_picker/image_picker.dart';
 import 'package:instragram_clone/resources/auth_methods.dart';
 import 'package:instragram_clone/screen/login_screen.dart';
 
+import '../responsive/mobile_screen_layout.dart';
+import '../responsive/responsive_layout.dart';
+import '../responsive/web_screen_layout.dart';
 import '../utils/utils.dart';
 import '../widget/text_field_input.dart';
 
@@ -55,7 +58,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
     if (res != 'success') {
       showSnackBar(context, res);
-    } else {}
+    } else {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const RespossiveLauout(
+            webScreenLayout: WebScreenLayout(),
+            mobileScreenLayout: MobileScreenLayout(),
+          ),
+        ),
+      );
+    }
   }
 
   @override

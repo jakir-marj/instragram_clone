@@ -4,6 +4,9 @@ import 'package:instragram_clone/responsive/dimensions.dart';
 import 'package:instragram_clone/screen/sign_up_screen.dart';
 import 'package:instragram_clone/utils/utils.dart';
 
+import '../responsive/mobile_screen_layout.dart';
+import '../responsive/responsive_layout.dart';
+import '../responsive/web_screen_layout.dart';
 import '../widget/text_field_input.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -35,8 +38,14 @@ class _LoginScreenState extends State<LoginScreen> {
       password: _passwordController.text,
     );
     if (res == 'success') {
-      // Navigator.of(context).pushReplacement(
-      //     MaterialPageRoute(builder: (context) => const HomeScreen()));
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const RespossiveLauout(
+            webScreenLayout: WebScreenLayout(),
+            mobileScreenLayout: MobileScreenLayout(),
+          ),
+        ),
+      );
       setState(() {
         _isLoading = false;
       });
@@ -103,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     color: Color.fromRGBO(0, 149, 246, 1),
                   ),
                   child: !_isLoading
-                      ? Text(
+                      ? const Text(
                           'Log in',
                         )
                       : const CircularProgressIndicator(
